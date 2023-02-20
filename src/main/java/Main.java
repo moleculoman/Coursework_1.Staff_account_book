@@ -1,12 +1,14 @@
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
         Employee[] Employees = new Employee[10];
-        Employees[0] = new Employee("Иванов Иван Иванович", 1, 45000);
-        Employees[1] = new Employee("Петров Игнат Петрович", 2, 35000);
-        Employees[2] = new Employee("Сидоров Семен Андреевич", 1, 55500);
-        Employees[3] = new Employee("Шустов Сергей Валерьевич", 2, 42750);
+        Employees[0] = new Employee("Иван", "Иванов",1, 45000);
+        Employees[1] = new Employee("Игнат","Петров" ,2, 35000);
+        Employees[2] = new Employee("Семен", "Сидоров",1, 55500);
+        Employees[3] = new Employee("Сергей", "Шустов",2, 42750);
         System.out.println("Первый метод:");
         System.out.println(allInformation(Employees));
         System.out.println("Второй метод:");
@@ -19,6 +21,7 @@ public class Main {
         System.out.println(averageSalary(Employees));
         System.out.println("Шестой метод:");
         System.out.println(allFIO(Employees));
+        System.out.println(StringUtils.trim(String.valueOf(Employees)));
     }
 
     //Метод для вывода всей информации по сотрудникам

@@ -1,14 +1,22 @@
+import org.apache.commons.lang3.StringUtils;
+
 public class Employee {
     private final int id;
     private int department;
+    private String firstName;
+    private String surName;
     private String fullName;
     protected int salary;
     private static int counter;
 
     //constructor
-    public Employee(String fullName, int department, int salary){
+    public Employee(String firstName,String surName, int department, int salary){
+        if (inputValidation(firstName,surName)){
+            throw new IllegalArgumentException("400 Bad Request");
+        }
         this.id = ++counter;
-        this.fullName = fullName;
+        this.firstName = StringUtils.capitalize(firstName.toLowerCase());
+        this.surName = StringUtils.capitalize(surName.toLowerCase());
         this.department = department;
         this.salary = salary;
     }
@@ -20,6 +28,23 @@ public class Employee {
     public int getDepartment (){
         return this.department;
     }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getSurName() {
+        return surName;
+    }
+
+    public void setSurName(String surName) {
+        this.surName = surName;
+    }
+
     public String getFullName (){
         return this.fullName;
     }
@@ -29,7 +54,7 @@ public class Employee {
 
     //Здесь расположены Set'еры
     public void setFullName(String fullName){
-        this.fullName = fullName;
+        this.fullName = firstName+surName;
     }
     public void setDepartment (int department){
         this.department = department;
@@ -43,5 +68,8 @@ public class Employee {
         return "Id: " + id +", " + " Ф.И.О.: " + fullName +", " +" Отдел " + department +", " +" Заработная плата: " + salary;
     }
 
+    private boolean inputValidation(String firstName,String surName){
+        return StringUtils.isAlpha(firstName) && StringUtils.isAlpha(surName);
+    }
 
 }
