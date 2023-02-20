@@ -11,7 +11,7 @@ public class Employee {
 
     //constructor
     public Employee(String firstName,String surName, int department, int salary){
-        if (inputValidation(firstName,surName)){
+        if (!inputValidation(firstName,surName)){
             throw new IllegalArgumentException("400 Bad Request");
         }
         this.id = ++counter;
@@ -46,7 +46,7 @@ public class Employee {
     }
 
     public String getFullName (){
-        return this.fullName;
+        return this.fullName = firstName+" "+surName;
     }
     public int getSalary(){
         return salary;
@@ -65,7 +65,7 @@ public class Employee {
 
     @Override
     public String toString(){
-        return "Id: " + id +", " + " Ф.И.О.: " + fullName +", " +" Отдел " + department +", " +" Заработная плата: " + salary;
+        return "Id: " + id +", " + " Ф.И.О.: " + firstName + surName +", " +" Отдел " + department +", " +" Заработная плата: " + salary;
     }
 
     private boolean inputValidation(String firstName,String surName){
